@@ -1,0 +1,44 @@
+html {
+    font-size: 20px;
+    font-family: sans-serif;
+    padding: 50px;
+    color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.challenge {
+    max-width: 800px;
+    margin: 10px auto;
+
+    display: grid;
+    grid-template-rows: 1fr 2fr 4fr 1fr;
+    grid-template-columns: repeat(3, 1fr) 22%;
+    gap: 20px;
+}
+
+.challenge > * {
+    background-color: red;
+    padding: 20px;
+}
+
+/* We don't have to specify grid-row/grid-column for all grid items cause most are alread placed according to their source order in the mark up. Only the items that aren't are configured to give the desired layout*/
+.header {
+    grid-column: 1 / -1; /*grid area starts from 1st column line to the last*/ 
+}
+
+.sidebar {
+    grid-row: 2 / span 2; /*grid area starts from 2nd row line and span across 2 grid cells OR 2 / 4*/
+    grid-column: 4 / 5; 
+}
+
+.main {
+    grid-column: 1 / span 3;
+}
+
+.footer {
+    grid-column: 1 / -1;
+}

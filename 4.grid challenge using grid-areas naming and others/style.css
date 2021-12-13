@@ -1,0 +1,71 @@
+html {
+    font-size: 20px;
+    font-family: sans-serif;
+    padding: 50px;
+    color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* for small layouts e.g 4 x 4 or 5 x 5, grid-areas are good, but for large layouts e.g an entire page with 12 x 15 then grid lines naming are better suited */
+
+.challenge {
+    max-width: 800px;
+    margin: 10px auto;
+
+    display: grid;
+    grid-template-rows: 1fr 2fr 4fr 1fr;
+    grid-template-columns: repeat(3, 1fr) 22%;
+    gap: 20px;
+
+    grid-template-areas: "head head head head"
+                         "box-1 box-2 box-3 side"
+                         "main main main side"
+                         "foot foot foot foot";  /* A cell is made empty by inputting "." instead of a word e.g foot */
+    
+    
+    /* An explicit grid is a grid created from an explicitly defined grid-template-rows and grid-template-columns. In firefox, an explicit grid is bounded by a thin solid line. When we have more grid items than the grid cells created from row tracks and column tracks intersections then an implicit grid row is naturally added to accomodate such grid items that couldnt fit into the explicit grid. In firefox, an explicit grid is bounded by a thin broken line. Implicit grids are also created when no row tracks or column tracks were defined (OR both not defined at the same time)*/
+    /* grid-auto-rows: 80px;    //means implicit grid row tracks should have a height of 80px */ 
+    /* grid-auto-flow: column;  //default is row, i.e implicit grid are added as row tracks. When set to column, they're now added as column tracks */
+    /* grid-auto-columns: .5fr;  //means width of the implicit grid column tracks should have a width half(.5) of the explicit column tracks width */
+    /* grid-auto-flow: row dense;  //when the automatic placing algorithm tries to place the grid items according to how they are in the mark up sometimes we end up having empty cells. In order to eliminate these empty cells, we add the "dense" keyword so all grid cells are filled with some kind of grid item
+    /* These is important in doing layout where we are not sure how many grid items we would be having e.g unknown amount of data during ajax call */
+
+
+    /* Alignment of grid items(content) in their grid area(from where to where we specified the grid item to span across over multiple grid cells) or just in their grid cell(cell formed by the mere intersection of row tracks and column tracks which a grid item occupies if a grid area isnt defined for such item) in a grid container */
+    /* justify-items: center, start, end, stretch      //default value is STRETCH(i.e each of the grid item is strectched left to right to fill the whole width of their grid area/grid cell). It aligns all grid items horizontally along the row axis in their grid areas  */
+    /* align-items: center, start, end, stretch   //default value is STRETCH(i.e automatically each grid item is stretched top to bottom to fill the whole height of their grid area/grid cell unless stated otherwise). It aligns all the grid items vertically across the column axis in their grid areas */
+
+
+    /* Alignment of entire grid tracks(either row tracks or column tracks) in a grid container (mostly used when total width of grid column tracks/height of grid row tracks is less than the width/height of the grid container so alignment is required)   */
+    /* justify-content: center; start, end, stretch, space-around, space-between, space-evenly   //all column tracks centered horizontally to the center of the container*/
+    /* align-content: center; start, end, stretch, space-around, space-between, space-evenly      //all row tracks centered horizontally to the center of the container*/
+
+}
+
+.challenge > * {
+    background-color: red;
+    padding: 20px;
+}
+
+.header {
+    grid-area: head;
+
+    /*justify-self: end     overrides justify-items for a specific grid item  */
+    /*align-self: start   overrides align-items for a specific grid item  */
+}
+
+.sidebar {
+    grid-area: side;
+}
+
+.main {
+    grid-area: main;
+}
+
+.footer {
+    grid-area: foot;
+}

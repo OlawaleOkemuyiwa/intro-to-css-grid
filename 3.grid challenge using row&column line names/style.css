@@ -1,0 +1,45 @@
+html {
+    font-size: 20px;
+    font-family: sans-serif;
+    padding: 50px;
+    color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Naming the row and column lines expressively and then using those names to position gtid items as one would using row/column lines*/
+.challenge {
+    max-width: 800px;
+    margin: 10px auto;
+
+    display: grid;
+    grid-template-rows: [header-start] 1fr [header-end box-start] 2fr [box-end main-start] 4fr [main-end footer-start] 1fr [footer-end];
+    grid-template-columns: repeat(3, [col-start] 1fr [col-end]) 22% [grid-end]; /*create a named set of grid lines like--> [col-start 1] 1fr [col-end 1]    [col-start 2] 1fr [col-end 2]     [col-start 3] 1fr [col-end 3]*/
+    gap: 20px;
+}
+
+.challenge > * {
+    background-color: red;
+    padding: 20px;
+}
+
+/* We don't have to specify grid-row/grid-column for all grid items cause most are alread placed according to their source order in the mark up. Only the items that aren't are configured to give the desired layout*/
+.header {
+    grid-column: col-start 1 / grid-end; /*OR 1 / -1 */
+}
+
+.sidebar {
+    grid-row: box-start / main-end;
+    grid-column: col-end 3 / grid-end; 
+}
+
+.main {
+    grid-column: col-start 1 / col-end 3;
+}
+
+.footer {
+    grid-column: col-start 1 / grid-end;
+}

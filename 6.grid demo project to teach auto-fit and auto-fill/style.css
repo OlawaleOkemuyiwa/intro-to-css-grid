@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 20px;
+    font-family: sans-serif;
+    color: #fff;
+}
+
+.container {
+    width: 800px;
+    margin: 20px auto;
+    background-color: #ddd;
+
+    display: grid;
+    grid-template-rows: repeat(2, minmax(150px, min-content));
+    /* Instead of hard-coding the no of columns we wish to have in the repeat() func, we use auto-fill and autofit instead which is even better for responsiveness*/
+    grid-template-columns: repeat(auto-fill, 80px);  /*autofill/autofit creates as many column tracks as can fit in a containing width based on the width/width range defined. e.g. in the 800px container autofill columns each of 80px, therefore we have 10 columns in the grid (which fills the whole of container width) and our 8 elements fill 8 out of these 10 column tracks, leaving 2 empty column tracks to the right*/
+    grid-template-columns: repeat(auto-fit, 80px);  /* behaves like autofill but collapses the resulting empty column tracks(that wasnt occupied by grid items) leaving a free space to the right in the grid container which is not part of the grid */
+    
+    width: 90%;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /*autofit an x amount of column tracks each with a min width of 140px and a max width of 1fr*/
+    grid-auto-rows: 120px;
+}
+
+.item {
+    padding: 10px;
+    background-color: orangered;
+}
+
+.item--1 { background-color: orangered;}
+.item--2 { background-color: yellowgreen;}
+.item--3 { background-color: blueviolet;}
+.item--4 { background-color: palevioletred;}
+.item--5 { background-color: royalblue;}
+.item--6 { background-color: goldenrod;}
+.item--7 { background-color: crimson;}
+.item--8 { background-color: darkslategray;}
